@@ -120,7 +120,7 @@ const ContactModal = ({ onClose, env }: ContactModalProps) => {
       >
         <motion.div
           variants={modalVariants}
-          className="md:2/3 fixed flex h-fit max-h-[80%] w-3/4 flex-col overflow-scroll rounded-lg bg-white px-6 pt-4 pb-8 shadow-md dark:bg-gray-700 dark:text-gray-50 lg:w-1/2 xl:w-1/3"
+          className="md:2/3 fixed flex h-fit max-h-[80%] w-[90%] flex-col overflow-scroll rounded-lg bg-white px-6 pt-4 pb-8 shadow-md dark:bg-gray-700 dark:text-gray-50 lg:w-1/2 xl:w-1/3"
         >
           <div className="w-full">
             <Button
@@ -137,8 +137,8 @@ const ContactModal = ({ onClose, env }: ContactModalProps) => {
               <p className="mt-4 text-sm text-gray-500 dark:text-gray-50">
                 Or if you prefer to do it your way, you can get in touch here:
               </p>
-              <div className="mt-2 flex w-full flex-row items-center justify-between rounded-lg bg-gray-100 dark:bg-gray-600">
-                <p className="p-2 pl-4 font-mono text-sm dark:text-gray-50">
+              <div className="mt-2 flex w-full flex-wrap items-center justify-between rounded-lg bg-gray-100 dark:bg-gray-600">
+                <p className="py-2 pl-2 font-mono text-sm dark:text-gray-50">
                   alexanderbukswienty@gmail.com
                 </p>
                 <IconMini
@@ -174,7 +174,7 @@ const ContactModal = ({ onClose, env }: ContactModalProps) => {
               onChange={handleChange}
             />
           </div>
-          <div className="mt-8 flex w-full flex-row justify-end space-x-4">
+          <div className="mt-8 flex w-full flex-col items-center justify-end space-x-4 space-y-4 sm:flex-row sm:flex-wrap sm:space-y-0">
             <Button onClick={onClose} trailingIcon="close" color="light">
               I regret my choices
             </Button>
