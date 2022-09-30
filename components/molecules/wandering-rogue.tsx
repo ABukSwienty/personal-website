@@ -98,7 +98,7 @@ const WanderingRogue = () => {
         animate={controls}
         whileHover={{
           scale: 0.9,
-          opacity: 0.5,
+          opacity: 0.3,
           background: "radial-gradient(#eff6ff, #bfdbfe)",
         }}
         onMouseEnter={() => {

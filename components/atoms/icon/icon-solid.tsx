@@ -19,6 +19,8 @@ import {
   ArrowRightIcon,
   ArrowDownOnSquareIcon,
 } from "@heroicons/react/24/solid";
+import GitHubIcon from "./github";
+import LinkedInIcon from "./linked-in";
 
 export interface IconNames {
   lightMode: typeof SunIcon;
@@ -37,6 +39,8 @@ export interface IconNames {
   home: typeof HomeModernIcon;
   arrowRight: typeof ArrowRightIcon;
   download: typeof ArrowDownOnSquareIcon;
+  github: typeof GitHubIcon;
+  linkedIn: typeof LinkedInIcon;
 }
 
 export interface IconProps extends React.ComponentProps<"svg"> {
@@ -68,6 +72,8 @@ const iconTable: IconNames = {
   home: HomeModernIcon,
   arrowRight: ArrowRightIcon,
   download: ArrowDownOnSquareIcon,
+  github: GitHubIcon,
+  linkedIn: LinkedInIcon,
 };
 
 const IconSolid = ({

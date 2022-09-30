@@ -16,8 +16,10 @@ import typescript from "../../public/assets/technologies/typescript.png";
 import framer from "../../public/assets/technologies/framer.webp";
 import node from "../../public/assets/technologies/node.png";
 
-import { motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import setClassName from "../../util/set-class-name";
+import { useFloating } from "@floating-ui/react-dom-interactions";
+import { useState } from "react";
 
 export interface ImageLogoProps {
   image: keyof typeof imageTable;
@@ -131,18 +133,41 @@ const variants: Variants = {
 
 const ImageLogo = ({
   image,
-  tooltipPlacement = "top",
   width,
   height,
   className = "",
 }: ImageLogoProps) => {
+  const [open, setOpen] = useState(false);
+  const { x, y, reference, floating, strategy } = useFloating({
+    open,
+    onOpenChange: setOpen,
+  });
   const classNames = setClassName([
     "relative ring-4 ring-indigo-200 dark:ring-indigo-500 shadow-lg flex items-center justify-center rounded-full overflow-hidden cursor-pointer origin-center w-24 h-24 md:w-32 md:h-32",
     className,
   ]);
 
+  let Component = (
+    <motion.div
+      variants={variants}
+      whileHover={{ scale: 1.1 }}
+      className={classNames}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <Image
+        src={imageTable[image].src}
+        alt={imageTable[image].alt}
+        layout="intrinsic"
+        width={width}
+        height={height}
+        loading="lazy"
+      />
+    </motion.div>
+  );
+
   if (imageTable[image].link) {
-    return (
+    Component = (
       <motion.a
         variants={variants}
         href={imageTable[image].link}
@@ -150,6 +175,8 @@ const ImageLogo = ({
         rel="noopener noreferrer"
         whileHover={{ scale: 1.1 }}
         className={classNames}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
       >
         <Image
           src={imageTable[image].src}
@@ -161,24 +188,41 @@ const ImageLogo = ({
         />
       </motion.a>
     );
-  } else {
-    return (
-      <motion.div
-        variants={variants}
-        whileHover={{ scale: 1.1 }}
-        className={classNames}
-      >
-        <Image
-          src={imageTable[image].src}
-          alt={imageTable[image].alt}
-          layout="intrinsic"
-          width={width}
-          height={height}
-          loading="lazy"
-        />
-      </motion.div>
-    );
   }
+
+  return (
+    <div ref={reference} className="relative">
+      {Component}
+      <AnimatePresence>
+        {open && (
+          <motion.span
+            ref={floating}
+            style={{
+              position: strategy,
+              top: y ?? 0,
+              left: x ?? 0,
+            }}
+            initial={{
+              opacity: 0,
+              scale: 0.9,
+            }}
+            animate={
+              open
+                ? {
+                    opacity: 1,
+                    scale: 1,
+                  }
+                : {}
+            }
+            exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+            className="mt-4 rounded-lg bg-indigo-600 px-2 py-1 text-center text-sm text-white shadow-sm dark:bg-indigo-50 dark:text-gray-800"
+          >
+            {imageTable[image].tooltip}
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 };
 
 export default ImageLogo;

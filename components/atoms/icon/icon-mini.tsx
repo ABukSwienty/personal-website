@@ -19,6 +19,8 @@ import {
   ArrowRightIcon,
   ArrowDownOnSquareIcon,
 } from "@heroicons/react/20/solid";
+import GitHubIcon from "./github";
+import LinkedInIcon from "./linked-in";
 
 interface IconMini extends IconProps {}
 
@@ -39,6 +41,8 @@ const iconTable: IconNames = {
   website: GlobeAltIcon,
   arrowRight: ArrowRightIcon,
   download: ArrowDownOnSquareIcon,
+  github: GitHubIcon,
+  linkedIn: LinkedInIcon,
 };
 
 const IconMini = ({ icon, size = "sm", className = "", ...rest }: IconMini) => {

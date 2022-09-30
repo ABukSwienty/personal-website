@@ -19,6 +19,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { IconNames, IconProps, iconSizes } from "./icon-solid";
 import setClassName from "../../../util/set-class-name";
+import GitHubIcon from "./github";
+import LinkedInIcon from "./linked-in";
 
 interface IconOutLine extends IconProps {}
 
@@ -39,6 +41,8 @@ const iconTable: IconNames = {
   home: HomeModernIcon,
   arrowRight: ArrowRightIcon,
   download: ArrowDownOnSquareIcon,
+  github: GitHubIcon,
+  linkedIn: LinkedInIcon,
 };
 
 const IconOutline = ({

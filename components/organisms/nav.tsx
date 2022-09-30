@@ -1,4 +1,5 @@
-import { motion, useAnimationControls } from "framer-motion";
+import { useFloating } from "@floating-ui/react-dom-interactions";
+import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 import setClassName from "../../util/set-class-name";
 import IconOutline from "../atoms/icon/icon-outline";
@@ -17,25 +18,71 @@ export interface NavButtonProps
   icon?: keyof IconNames;
   onClick?: () => void;
   children?: React.ReactNode;
+  tooltip: string;
 }
 
-const NavButton = ({ icon, onClick, children, ...rest }: NavButtonProps) => {
+const NavButton = ({
+  icon,
+  onClick,
+  children,
+  tooltip,
+  ...rest
+}: NavButtonProps) => {
+  const [open, setOpen] = useState(false);
+  const { x, y, reference, floating, strategy } = useFloating({
+    open,
+    onOpenChange: setOpen,
+  });
+
   return (
-    <motion.button
-      {...rest}
-      whileTap={{ scale: 0.9 }}
-      onClick={onClick}
-      className="group cursor-pointer rounded-lg border-2 border-transparent bg-indigo-100 px-1 py-1 shadow-indigo-600 ring-2 ring-indigo-100 transition-[border,shadow] duration-300 ease-in-out hover:border-indigo-500 hover:shadow-[0_0_10px_rgba(79,70,229,0.3)] hover:ring-transparent dark:bg-indigo-50 dark:shadow-indigo-50 dark:ring-indigo-100 dark:hover:border-indigo-600 dark:hover:ring-transparent md:px-2 md:py-2"
-    >
-      {icon && (
-        <IconOutline
-          icon={icon}
-          size="sm"
-          className="text-indigo-400 transition-colors ease-in-out group-hover:text-indigo-600"
-        />
-      )}
-      {!icon && children && children}
-    </motion.button>
+    <>
+      <motion.button
+        {...rest}
+        whileTap={{ scale: 0.9 }}
+        onClick={onClick}
+        ref={reference}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        className="group cursor-pointer rounded-lg border-2 border-transparent bg-indigo-100 px-1 py-1 shadow-sm shadow-indigo-600 ring-2 ring-indigo-100 transition-[border,shadow] duration-300 ease-in-out hover:border-indigo-500 hover:shadow-[0_0_10px_rgba(79,70,229,0.3)] hover:ring-transparent dark:bg-indigo-50 dark:shadow-indigo-50 dark:ring-indigo-100 dark:hover:border-indigo-600 dark:hover:ring-transparent md:px-2 md:py-2"
+      >
+        {icon && (
+          <IconOutline
+            icon={icon}
+            size="sm"
+            className="text-indigo-400 transition-colors ease-in-out group-hover:text-indigo-600"
+          />
+        )}
+        {!icon && children && children}
+      </motion.button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            ref={floating}
+            style={{
+              position: strategy,
+              top: y ?? 0,
+              left: x ?? 0,
+            }}
+            initial={{
+              opacity: 0,
+              scale: 0.9,
+            }}
+            animate={
+              open
+                ? {
+                    opacity: 1,
+                    scale: 1,
+                  }
+                : {}
+            }
+            exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+            className="mt-2 rounded-lg bg-indigo-600 px-2 py-1 text-center text-sm text-white shadow-sm dark:bg-indigo-50 dark:text-gray-800"
+          >
+            {tooltip}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
