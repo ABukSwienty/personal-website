@@ -20,6 +20,15 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta
+            name="description"
+            content="Alexander-Buk-Swienty's personal website"
+          />
+          <meta
+            name="keywords"
+            content="Freelancer, web-development, resume, personal"
+          />
+          <meta name="author" content="Alexander Buk-Swienty" />
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
