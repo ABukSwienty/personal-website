@@ -23,7 +23,7 @@ const ImageContainer = ({ children }: ImageContainerProps) => {
   const controls = useAnimation();
   const inView = useInView(ref, {
     amount: 1,
-    margin: "",
+    margin: "100px",
     once: true,
   });
 
@@ -37,7 +37,7 @@ const ImageContainer = ({ children }: ImageContainerProps) => {
       variants={variants}
       initial="initial"
       animate={controls}
-      className="w-fit flex flex-wrap justify-evenly h-full gap-6 cursor-pointer"
+      className="flex h-full w-fit cursor-pointer flex-wrap justify-evenly gap-6"
     >
       {children}
     </motion.div>
