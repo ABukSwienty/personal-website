@@ -26,7 +26,7 @@ class MyDocument extends Document {
           />
           <meta
             name="keywords"
-            content="Freelancer, web-development, resume, personal"
+            content="freelancer, web-development, resume, personal, buk-swienty"
           />
           <meta name="author" content="Alexander Buk-Swienty" />
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
