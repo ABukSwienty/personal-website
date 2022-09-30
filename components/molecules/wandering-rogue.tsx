@@ -20,7 +20,7 @@ const WanderingRogue = () => {
     { x: number; y: number } | undefined
   >(undefined);
   const controls = useAnimationControls();
-  const padding = 25;
+  const padding = 50;
   const controlShotLeft = useAnimationControls();
   const controlShotRight = useAnimationControls();
   const [isHovering, setIsHovering] = useState(false);
@@ -79,18 +79,24 @@ const WanderingRogue = () => {
 
   useEffect(() => {
     handleSetRelativePos();
-    window.addEventListener("resize", handleSetRelativePos);
-    return () => {
-      window.removeEventListener("resize", handleSetRelativePos);
+    const handleResize = () => {
+      handleSetRelativePos();
+
+      controls.set({ x: 0, y: 0 });
     };
-  }, [handleSetRelativePos]);
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [handleSetRelativePos, controls]);
 
   return (
     <>
       <motion.div
         variants={variant}
         animate={controls}
-        whileHover={{ scale: 0.9 }}
+        whileHover={{ scale: 0.9, opacity: 0.3 }}
         onMouseEnter={() => {
           handleMove();
           setIsHovering(true);
@@ -98,7 +104,11 @@ const WanderingRogue = () => {
         onMouseLeave={() => {
           setIsHovering(false);
         }}
-        className="relative z-40 ml-4 flex flex-row justify-start pt-2 text-3xl"
+        onClick={() => {
+          setIsHovering(false);
+          handleMove();
+        }}
+        className="relative z-40 flex flex-row justify-start rounded-full p-6 text-3xl"
         ref={ref}
       >
         👾
