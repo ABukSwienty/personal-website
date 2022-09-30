@@ -96,7 +96,11 @@ const WanderingRogue = () => {
       <motion.div
         variants={variant}
         animate={controls}
-        whileHover={{ scale: 0.9, opacity: 0.3 }}
+        whileHover={{
+          scale: 0.9,
+          opacity: 0.5,
+          background: "radial-gradient(#eff6ff, #bfdbfe)",
+        }}
         onMouseEnter={() => {
           handleMove();
           setIsHovering(true);
