@@ -16,19 +16,27 @@ const variant: Variants = {
 
 const WanderingRogue = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const [relativePos, setRelativePos] = useState<
+    { x: number; y: number } | undefined
+  >(undefined);
   const controls = useAnimationControls();
+  const padding = 25;
   const controlShotLeft = useAnimationControls();
   const controlShotRight = useAnimationControls();
   const [isHovering, setIsHovering] = useState(false);
 
   const moveRogue = () => {
-    if (!ref.current) return {};
-
-    const { x, y } = ref.current.getBoundingClientRect();
+    if (!relativePos) return {};
 
     return {
-      y: randomNumInterval(0, window.innerHeight - y - 10),
-      x: randomNumInterval(0, window.innerWidth - x - 10),
+      y: randomNumInterval(
+        -relativePos.y + padding,
+        window.innerHeight - relativePos.y - padding
+      ),
+      x: randomNumInterval(
+        -relativePos.x + padding,
+        window.innerWidth - relativePos.x - padding
+      ),
       transition: {
         duration: randomNumInterval(2, 5),
       },
@@ -63,11 +71,18 @@ const WanderingRogue = () => {
     }
   };
 
+  useEffect(() => {
+    if (!ref.current) return;
+    const { left, top } = ref.current.getBoundingClientRect();
+    setRelativePos({ x: left, y: top });
+  }, []);
+
   return (
     <>
       <motion.div
         variants={variant}
         animate={controls}
+        whileHover={{ scale: 0.9 }}
         onMouseEnter={() => {
           handleMove();
           setIsHovering(true);
