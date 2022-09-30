@@ -21,7 +21,10 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
           icon="home"
         />
         <div className="flex w-full flex-row justify-end gap-4">
-          <Nav.Button onClick={handleAlertAllSquares}>
+          <Nav.Button
+            aria-label="Toggle all the squares"
+            onClick={handleAlertAllSquares}
+          >
             <div className="m-1 h-4 w-4 rounded-sm bg-indigo-200 transition-colors duration-300 ease-in-out group-hover:bg-indigo-600 "></div>
           </Nav.Button>
           <Nav.Button

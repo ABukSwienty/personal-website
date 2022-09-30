@@ -1,20 +1,20 @@
 import Image, { StaticImageData } from "next/image";
-import Gads from "../../assets/clients/gads.png";
-import Politikens from "../../assets/clients/politikens.png";
-import CLA from "../../assets/clients/CLA.webp";
-import ECA from "../../assets/clients/ECA.png";
-import FL from "../../assets/clients/FL.png";
-import Gutkind from "../../assets/clients/Gutkind.jpg";
-import LRA from "../../assets/clients/LRA.png";
+import Gads from "../../public/assets/clients/gads.png";
+import Politikens from "../../public/assets/clients/politikens.png";
+import CLA from "../../public/assets/clients/CLA.webp";
+import ECA from "../../public/assets/clients/ECA.png";
+import FL from "../../public/assets/clients/FL.png";
+import Gutkind from "../../public/assets/clients/Gutkind.jpg";
+import LRA from "../../public/assets/clients/LRA.png";
 
-import nest from "../../assets/technologies/nest.png";
-import prisma from "../../assets/technologies/prisma.png";
-import react from "../../assets/technologies/react.png";
-import next from "../../assets/technologies/next.png";
-import tailwind from "../../assets/technologies/tailwind.jpg";
-import typescript from "../../assets/technologies/typescript.png";
-import framer from "../../assets/technologies/framer.webp";
-import node from "../../assets/technologies/node.png";
+import nest from "../../public/assets/technologies/nest.png";
+import prisma from "../../public/assets/technologies/prisma.png";
+import react from "../../public/assets/technologies/react.png";
+import next from "../../public/assets/technologies/next.png";
+import tailwind from "../../public/assets/technologies/tailwind.jpg";
+import typescript from "../../public/assets/technologies/typescript.png";
+import framer from "../../public/assets/technologies/framer.webp";
+import node from "../../public/assets/technologies/node.png";
 
 import { motion, Variants } from "framer-motion";
 import setClassName from "../../util/set-class-name";

@@ -16,6 +16,7 @@ import Carousel from "../components/molecules/carousel";
 import Text from "../components/atoms/text";
 import WanderingRogue from "../components/molecules/wandering-rogue";
 import ScreenShotWrapper from "../components/organisms/screen-shot-wrapper";
+import Head from "next/head";
 
 export interface EnvProps {
   env: {
@@ -61,6 +62,9 @@ const Home: NextPage<EnvProps> = (props) => {
 
   return (
     <PageLayout>
+      <Head>
+        <title>Alexander Buk-Swienty</title>
+      </Head>
       <AnimatePresence>
         {showContact && <ContactModal env={props} onClose={handleCloseModal} />}
       </AnimatePresence>

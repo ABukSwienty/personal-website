@@ -3,15 +3,15 @@ import Image, { ImageProps } from "next/image";
 import Portal from "../../HOC/portal";
 import Button from "../atoms/button";
 
-import mnemoAdd from "../../assets/screen-shots/mnemo/add.png";
-import mnemoContracts from "../../assets/screen-shots/mnemo/contracts.png";
-import mnemoDash from "../../assets/screen-shots/mnemo/dash.png";
-import mnemoSearch from "../../assets/screen-shots/mnemo/search.png";
+import mnemoAdd from "../../public/assets/screen-shots/mnemo/add.png";
+import mnemoContracts from "../../public/assets/screen-shots/mnemo/contracts.png";
+import mnemoDash from "../../public/assets/screen-shots/mnemo/dash.png";
+import mnemoSearch from "../../public/assets/screen-shots/mnemo/search.png";
 
-import reBook from "../../assets/screen-shots/reRight/book.png";
-import reContracts from "../../assets/screen-shots/reRight/contracts.png";
-import reCreateAuthor from "../../assets/screen-shots/reRight/create-author.png";
-import reCreateContract from "../../assets/screen-shots/reRight/create-contract.png";
+import reBook from "../../public/assets/screen-shots/reRight/book.png";
+import reContracts from "../../public/assets/screen-shots/reRight/contracts.png";
+import reCreateAuthor from "../../public/assets/screen-shots/reRight/create-author.png";
+import reCreateContract from "../../public/assets/screen-shots/reRight/create-contract.png";
 import { useEffect } from "react";
 
 const imageTable = {
