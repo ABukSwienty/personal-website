@@ -32,7 +32,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="bg-indigo-100 font-sans transition-colors duration-300 ease-in-out">
+        <body className="overflow-x-hidden bg-indigo-50 font-sans transition-colors duration-300 ease-in-out">
           <div id="overlay" className="relative z-50"></div>
           <Main />
           <NextScript />
