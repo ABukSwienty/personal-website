@@ -71,11 +71,19 @@ const WanderingRogue = () => {
     }
   };
 
-  useEffect(() => {
+  const handleSetRelativePos = useCallback(() => {
     if (!ref.current) return;
     const { left, top } = ref.current.getBoundingClientRect();
     setRelativePos({ x: left, y: top });
   }, []);
+
+  useEffect(() => {
+    handleSetRelativePos();
+    window.addEventListener("resize", handleSetRelativePos);
+    return () => {
+      window.removeEventListener("resize", handleSetRelativePos);
+    };
+  }, [handleSetRelativePos]);
 
   return (
     <>
