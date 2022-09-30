@@ -41,7 +41,7 @@ export const Carousel = ({
   const [leftConstraint, setLeftConstraint] = useState(0);
 
   const containerClassNames = setClassName([
-    "overflow-hidden h-fit",
+    "overflow-hidden",
     containerClassName,
   ]);
 

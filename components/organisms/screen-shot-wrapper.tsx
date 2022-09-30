@@ -1,8 +1,8 @@
 import { motion, Variants } from "framer-motion";
-import Image, { ImageProps, StaticImageData } from "next/image";
+import Image, { ImageProps } from "next/image";
 import Portal from "../../HOC/portal";
-import Carousel from "../molecules/carousel";
 import Button from "../atoms/button";
+
 import mnemoAdd from "../../assets/screen-shots/mnemo/add.png";
 import mnemoContracts from "../../assets/screen-shots/mnemo/contracts.png";
 import mnemoDash from "../../assets/screen-shots/mnemo/dash.png";
@@ -112,6 +112,18 @@ const ScreenShotWrapper = ({
 
     return () => document.removeEventListener("keydown", handleClose);
   }, [onClose]);
+
+  useEffect(() => {
+    const el = document.querySelector("body");
+    if (!el) return;
+
+    el.classList.add("overflow-hidden");
+
+    return () => {
+      el.classList.remove("overflow-hidden");
+    };
+  }, []);
+
   return (
     <Portal>
       <motion.div
@@ -120,26 +132,17 @@ const ScreenShotWrapper = ({
         initial="initial"
         animate="animate"
         exit="exit"
-        className="fixed z-50 flex h-screen w-screen items-center justify-center"
-        onKeyDown={() => {
-          console.log("hi");
-        }}
+        className="fixed z-50 flex h-screen w-screen flex-col items-center justify-start overflow-scroll pt-20 pb-20"
       >
         <Button
-          color="light"
+          color="dark"
           trailingIcon="close"
-          className="absolute top-0 right-0 mt-8 mr-8"
+          className="absolute top-0 right-0 z-50 mt-4 mr-8"
           onClick={onClose}
         >
           Exit
         </Button>
-        <Carousel
-          id="screen-shot-wrapper"
-          containerClassName="px-12 lg:px-32"
-          itemClassName="mr-24"
-        >
-          {children}
-        </Carousel>
+        {children}
       </motion.div>
     </Portal>
   );
