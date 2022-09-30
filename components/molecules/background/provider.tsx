@@ -10,6 +10,14 @@ import {
 } from "./matrix";
 import { pubSubSquares } from "./pub-sub";
 
+const MAX_SQUARE_SIZE = (windowWidth: number) => {
+  if (windowWidth < 600) return 48;
+  if (windowWidth < 1024) return 64;
+  if (windowWidth > 1024 && windowWidth < 2048) return 96;
+  if (windowWidth > 2048) return 128;
+  return 64;
+};
+
 const getRandomNumber = (max: number) => Math.floor(Math.random() * max + 1);
 
 export interface BackgroundContextInterface {
@@ -43,7 +51,7 @@ export const BackgroundProvider = ({
 }: React.PropsWithChildren<{
   wrapperId: string;
 }>) => {
-  const squareSize = 96;
+  const [squareSize, setSquareSize] = useState(MAX_SQUARE_SIZE(1024));
   const delay = 4000;
   const [amount, setAmount] = useState(0);
   const [renderables, setRenderables] = useState<JSX.Element[]>([]);
@@ -85,12 +93,14 @@ export const BackgroundProvider = ({
   }, [amount, matrix, handlePublish]);
 
   const calcSquares = useCallback(() => {
-    const matrix = calculateMatrix(squareSize);
+    const newSquareSize = MAX_SQUARE_SIZE(window.innerWidth);
+    const matrix = calculateMatrix(newSquareSize);
     if (!matrix) return;
 
     setMatrix(matrix.matrix);
     setAmount(matrix.total);
-  }, [squareSize, calculateMatrix]);
+    setSquareSize(newSquareSize);
+  }, [calculateMatrix]);
 
   useEffect(() => {
     calcSquares();
