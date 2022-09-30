@@ -104,20 +104,20 @@ const Home: NextPage<EnvProps> = (props) => {
         </div>
         <p className="text-2xl leading-normal text-gray-600 dark:text-gray-50">
           <span className="font-medium text-indigo-400 dark:text-red-400">
-            Freelancer
+            Freelance
           </span>{" "}
-          for the publishing industry as editor // translator // consultant.{" "}
+          editor // translator // consultant for the publishing industry.
           <br />
           Self-taught{" "}
           <span className="font-medium text-indigo-400 dark:text-red-400">
             WebDev
           </span>{" "}
-          and burgeoning software engineer. <br />I don{"'"}t <i>just</i> watch
-          YouTube videos.{" "}
+          and software engineer. <br />I don{"'"}t <i>just</i> watch YouTube
+          tutorials.{" "}
           <span className="font-medium text-indigo-400 dark:text-red-400">
             I build stuff
           </span>{" "}
-          and maintain tools people use.
+          and maintain web apps people use.
         </p>
         <div className="mt-5 flex flex-row space-x-4">
           <Button
@@ -144,7 +144,7 @@ const Home: NextPage<EnvProps> = (props) => {
       >
         <div className="6 w-full">
           <Title size="6xl" className="font-arsenal text-indigo-50">
-            <span className="italic">Some</span> of the stuff I&apos;ve done.
+            <span className="italic">Some</span> of my projects.
           </Title>
           <p className="mt-2 mb-16 text-xl font-light text-indigo-50">
             (I{"'"}ll spare you the torture of sifting through all my unfished
@@ -443,12 +443,11 @@ const Home: NextPage<EnvProps> = (props) => {
               tedious tasks.
             </Text.Paragraph>
             <Text.Paragraph>
-              After a year and a half of learning and development (using PHP and
-              MySQL),{" "}
+              After a year and a half of development (using PHP and MySQL),{" "}
               <Text.Highlight>
                 I launched a rights management tool
               </Text.Highlight>{" "}
-              that could handle everything from that had to do with authors,
+              that could handle everything pertaining to our work with authors,
               contacts, contracts, sales history and even invoicing through an
               API connection to a third party invoicing system.
             </Text.Paragraph>
@@ -468,7 +467,13 @@ const Home: NextPage<EnvProps> = (props) => {
             </Text.Paragraph>
             <div className="mt-16 grow pt-8">
               <Button trailingIcon="download" size="lg">
-                My resume
+                <a
+                  href="/alexander-buk-swienty-cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download resume
+                </a>
               </Button>
             </div>
           </Text>
