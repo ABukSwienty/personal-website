@@ -102,7 +102,7 @@ const Home: NextPage<EnvProps> = (props) => {
         <div className="relative mb-8 flex w-fit flex-row items-center text-4xl font-thin lg:text-5xl">
           An ex-literary agent gone rogue <WanderingRogue />
         </div>
-        <p className="text-2xl leading-normal text-gray-600 dark:text-gray-50">
+        <p className="text-1xl leading-normal text-gray-600 dark:text-gray-50 sm:text-2xl">
           <span className="font-medium text-indigo-400 dark:text-red-400">
             Freelance
           </span>{" "}
@@ -140,7 +140,7 @@ const Home: NextPage<EnvProps> = (props) => {
       </Section>
       <Section
         id="read-more"
-        className="relative flex h-fit flex-1 flex-col flex-wrap justify-center gap-4 bg-red-600 py-32 dark:bg-red-900"
+        className="relative flex h-fit flex-1 flex-col flex-wrap justify-center gap-4 bg-red-600 py-32 dark:bg-indigo-900"
       >
         <div className="6 w-full">
           <Title size="6xl" className="font-arsenal text-indigo-50">
@@ -356,7 +356,7 @@ const Home: NextPage<EnvProps> = (props) => {
           </Carousel>
         </div>
       </Section>
-      <Section className="flex h-full w-full flex-col space-y-20 bg-indigo-100 py-32 dark:bg-indigo-700 dark:text-white md:space-y-48">
+      <Section className="flex h-full w-full flex-col space-y-20 bg-indigo-100 py-32 dark:bg-indigo-900 dark:text-white md:space-y-48">
         <div className="space-y-8">
           <Title size="6xl" className="font-arsenal">
             People I{" "}

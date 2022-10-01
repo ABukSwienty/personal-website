@@ -21,6 +21,64 @@ export interface NavButtonProps
   tooltip: string;
 }
 
+const NavLink = ({
+  href,
+  icon,
+  tooltip,
+}: {
+  href: string;
+  icon: keyof IconNames;
+  tooltip: string;
+}) => {
+  const [open, setOpen] = useState(false);
+  const { x, y, reference, floating, strategy } = useFloating({
+    open,
+    onOpenChange: setOpen,
+  });
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      ref={reference}
+      rel="noopener noreferrer"
+      className="text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-200"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <IconOutline icon={icon} />
+      <AnimatePresence>
+        {open && (
+          <motion.span
+            ref={floating}
+            style={{
+              position: strategy,
+              top: y ?? 0,
+              left: x ?? 0,
+            }}
+            initial={{
+              opacity: 0,
+              scale: 0.9,
+            }}
+            animate={
+              open
+                ? {
+                    opacity: 1,
+                    scale: 1,
+                  }
+                : {}
+            }
+            exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+            className="mt-2 rounded-lg bg-indigo-600 px-2 py-1 text-center text-sm text-white shadow-sm dark:bg-indigo-50 dark:text-gray-800"
+          >
+            {tooltip}
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </a>
+  );
+};
+
 const NavButton = ({
   icon,
   onClick,
@@ -43,7 +101,7 @@ const NavButton = ({
         ref={reference}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
-        className="group cursor-pointer rounded-lg border-2 border-transparent bg-indigo-100 px-1 py-1 shadow-sm shadow-indigo-600 ring-2 ring-indigo-100 transition-[border,shadow] duration-300 ease-in-out hover:border-indigo-500 hover:shadow-[0_0_10px_rgba(79,70,229,0.3)] hover:ring-transparent dark:bg-indigo-50 dark:shadow-indigo-50 dark:ring-indigo-100 dark:hover:border-indigo-600 dark:hover:ring-transparent md:px-2 md:py-2"
+        className="group cursor-pointer rounded-lg border-2 border-transparent bg-indigo-100 px-1 py-1 px-1 py-1 shadow-sm shadow-indigo-600 ring-2 ring-indigo-100 transition-[border,shadow] duration-300 ease-in-out hover:border-indigo-500 hover:shadow-[0_0_10px_rgba(79,70,229,0.3)] hover:ring-transparent dark:bg-indigo-50 dark:shadow-indigo-50 dark:ring-indigo-100 dark:hover:border-indigo-600 dark:hover:ring-transparent md:px-2 md:py-2"
       >
         {icon && (
           <IconOutline
@@ -139,5 +197,6 @@ const Nav = ({ children, className = "", ...rest }: NavProps) => {
 };
 
 Nav.Button = NavButton;
+Nav.Link = NavLink;
 
 export default Nav;

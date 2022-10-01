@@ -116,7 +116,7 @@ const Work = ({ children }: WorkProps) => {
       whileHover={{
         scale: 1.05,
       }}
-      className="flex max-h-fit min-h-[18rem] w-64 flex-col justify-between space-y-6 rounded-lg bg-white py-6 px-4 dark:bg-gray-700 sm:w-72 md:w-96"
+      className="flex max-h-fit min-h-[18rem] w-64 flex-col justify-between space-y-6 rounded-lg bg-white py-6 px-4 dark:bg-indigo-700 sm:w-72 md:w-96"
     >
       {children}
     </motion.article>

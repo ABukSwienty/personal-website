@@ -21,14 +21,17 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
           icon="home"
           tooltip="Back to top"
         />
-        <div className="flex w-full flex-row justify-end gap-4">
-          <Nav.Button
-            aria-label="Toggle all the squares"
-            onClick={handleAlertAllSquares}
-            tooltip="Show me all the squares!"
-          >
-            <div className="m-1 h-4 w-4 rounded-sm bg-indigo-200 transition-colors duration-300 ease-in-out group-hover:bg-indigo-600 "></div>
-          </Nav.Button>
+        <div className="flex w-full flex-row items-center justify-end gap-4">
+          <Nav.Link
+            icon="github"
+            href="https://github.com/ABukSwienty"
+            tooltip="Github"
+          />
+          <Nav.Link
+            icon="linkedIn"
+            href="https://www.linkedin.com/in/alexander-buk-swienty-70b4611ba/"
+            tooltip="LinkedIn"
+          />
           <Nav.Button
             aria-label="Github account"
             icon="download"
@@ -41,24 +44,12 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
             }
           />
           <Nav.Button
-            aria-label="Github account"
-            icon="github"
-            tooltip="Github account"
-            onClick={() =>
-              window.open("https://github.com/ABukSwienty", "_blank")
-            }
-          />
-          <Nav.Button
-            aria-label="LinkedIn account"
-            icon="linkedIn"
-            tooltip="LinkedIn account"
-            onClick={() =>
-              window.open(
-                "https://www.linkedin.com/in/alexander-buk-swienty-70b4611ba/",
-                "_blank"
-              )
-            }
-          />
+            aria-label="Toggle all the squares"
+            onClick={handleAlertAllSquares}
+            tooltip="Show me all the squares!"
+          >
+            <div className="m-1 h-4 w-4 rounded-sm bg-indigo-200 transition-colors duration-300 ease-in-out group-hover:bg-indigo-600 "></div>
+          </Nav.Button>
           <Nav.Button
             aria-label="Toggle dark mode"
             onClick={toggleDarkMode}

@@ -215,7 +215,7 @@ const ImageLogo = ({
                 : {}
             }
             exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-            className="mt-4 rounded-lg bg-indigo-600 px-2 py-1 text-center text-sm text-white shadow-sm dark:bg-indigo-50 dark:text-gray-800"
+            className="z-40 mt-4 rounded-lg bg-indigo-600 px-2 py-1 text-center text-sm text-white shadow-sm dark:bg-indigo-50 dark:text-gray-800"
           >
             {imageTable[image].tooltip}
           </motion.span>
