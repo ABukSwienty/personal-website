@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { motion, useAnimationControls, Variants } from "framer-motion";
 import { BackgroundContext, BackgroundProvider } from "./provider";
 import { pubSubSquares } from "./pub-sub";
@@ -78,7 +78,6 @@ const Component = ({ wrapperId }: { wrapperId: string }) => {
     if (!wrapper) return;
     const { width, height } = wrapper.getBoundingClientRect();
     setStyles({ width, height: wrapper.offsetHeight });
-    console.log(wrapper.offsetHeight);
   }, [renderables, wrapperId]);
 
   return (
