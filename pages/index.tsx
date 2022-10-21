@@ -17,6 +17,7 @@ import Text from "../components/atoms/text";
 import WanderingRogue from "../components/molecules/wandering-rogue";
 import ScreenShotWrapper from "../components/organisms/screen-shot-wrapper";
 import Head from "next/head";
+import LandingSection from "../components/organisms/landing-section";
 
 export interface EnvProps {
   env: {
@@ -29,7 +30,7 @@ export interface EnvProps {
 }
 
 const Home: NextPage<EnvProps> = (props) => {
-  const [showContact, setShowContact] = useState(false);
+  /* const [showContact, setShowContact] = useState(false); */
 
   const [showReRightsScreens, setShowReRightsScreens] = useState(false);
   const [showMnemoScreens, setShowMnemoScreens] = useState(false);
@@ -56,18 +57,18 @@ const Home: NextPage<EnvProps> = (props) => {
 
   const navigateToReadMore = useNavigateTo("read-more");
 
-  const handleToggleModal = () => setShowContact((prev) => !prev);
+  /*  const handleToggleModal = () => setShowContact((prev) => !prev);
 
-  const handleCloseModal = useCallback(() => setShowContact(false), []);
+  const handleCloseModal = useCallback(() => setShowContact(false), []); */
 
   return (
     <PageLayout>
       <Head>
         <title>Alexander Buk-Swienty</title>
       </Head>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showContact && <ContactModal env={props} onClose={handleCloseModal} />}
-      </AnimatePresence>
+      </AnimatePresence> */}
       <AnimatePresence>
         {showReRightsScreens && (
           <ScreenShotWrapper onClose={handleCloseReRightScreens}>
@@ -89,55 +90,7 @@ const Home: NextPage<EnvProps> = (props) => {
           </ScreenShotWrapper>
         )}
       </AnimatePresence>
-      <Section
-        id="landing"
-        className="relative flex min-h-screen cursor-pointer flex-col justify-center space-y-8 pt-32 pb-16 text-gray-600 dark:text-gray-50 lg:space-y-16"
-      >
-        <Title
-          size="9xl"
-          className="font-arsenal font-bold text-red-600 dark:text-red-400"
-        >
-          Alexander <br /> Buk-Swienty
-        </Title>
-        <div className="relative mb-8 flex w-fit flex-row items-center text-4xl font-thin lg:text-5xl">
-          An ex-literary agent gone rogue <WanderingRogue />
-        </div>
-        <p className="text-1xl leading-normal text-gray-600 dark:text-gray-50 sm:text-2xl">
-          <span className="font-medium text-indigo-400 dark:text-red-400">
-            Freelance
-          </span>{" "}
-          editor // translator // consultant for the publishing industry.
-          <br />
-          Self-taught{" "}
-          <span className="font-medium text-indigo-400 dark:text-red-400">
-            WebDev
-          </span>{" "}
-          and software engineer. <br />I don{"'"}t <i>just</i> watch YouTube
-          tutorials.{" "}
-          <span className="font-medium text-indigo-400 dark:text-red-400">
-            I build stuff
-          </span>{" "}
-          and maintain web apps people use.
-        </p>
-        <div className="mt-5 flex flex-row space-x-4">
-          <Button
-            color="light"
-            onClick={navigateToReadMore}
-            trailingIcon="arrowSmallDown"
-            className="z-20"
-          >
-            Read more
-          </Button>
-          <Button
-            onClick={handleToggleModal}
-            trailingIcon="contact"
-            size="lg"
-            className="z-20"
-          >
-            Let&apos;s talk
-          </Button>
-        </div>
-      </Section>
+      <LandingSection {...props} />
       <Section
         id="read-more"
         className="relative flex h-fit flex-1 flex-col flex-wrap justify-center gap-4 bg-red-600 py-32 dark:bg-indigo-900"

@@ -47,7 +47,11 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <GlobalContext.Provider
-      value={{ isDarkMode, toggleDarkMode, navigateToTop }}
+      value={{
+        isDarkMode,
+        toggleDarkMode,
+        navigateToTop,
+      }}
     >
       {children}
     </GlobalContext.Provider>

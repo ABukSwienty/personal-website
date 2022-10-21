@@ -22,8 +22,6 @@ const useEmailJs = (delay: number = 1000) => {
       env.emailJs.publicKey
     );
 
-    console.log(response);
-
     await new Promise((resolve) => setTimeout(resolve, delay));
 
     if (response.status === 200) return true;
