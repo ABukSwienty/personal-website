@@ -5,7 +5,7 @@ import Background from "../molecules/background";
 import Nav from "../organisms/nav";
 
 const PageLayout = ({ children }: { children: React.ReactNode }) => {
-  const { navigateToTop, isDarkMode, toggleDarkMode } =
+  const { navigateToTop, isDarkMode, toggleDarkMode, showBackground } =
     useContext(GlobalContext);
 
   const handleAlertAllSquares = () => {
@@ -60,7 +60,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
       </Nav>
       <div className="flex w-full grow flex-col">{children}</div>
       <Toaster />
-      <Background wrapperId="landing" />
+      {showBackground && <Background wrapperId="landing" />}
     </div>
   );
 };

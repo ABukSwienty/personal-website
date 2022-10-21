@@ -1,7 +1,8 @@
-import { AnimatePresence } from "framer-motion";
-import { useCallback, useState } from "react";
+import { AnimatePresence, useInView } from "framer-motion";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import useNavigateTo from "../../hooks/use-navigate-to";
 import { EnvProps } from "../../pages";
+import { GlobalContext } from "../../providers/global";
 import Button from "../atoms/button";
 import Section from "../atoms/section";
 import Title from "../atoms/title";
@@ -9,14 +10,26 @@ import ContactModal from "../molecules/contact-modal";
 import WanderingRogue from "../molecules/wandering-rogue";
 
 const LandingSection = ({ ...props }: EnvProps) => {
+  const ref = useRef(null);
+
+  const { setShowBackground } = useContext(GlobalContext);
+
+  const inView = useInView(ref);
+
   const navigateToReadMore = useNavigateTo("read-more");
   const [showContactModal, setShowContactModal] = useState(false);
 
   const handleToggleModal = () => setShowContactModal((prev) => !prev);
 
   const handleCloseModal = useCallback(() => setShowContactModal(false), []);
+
+  useEffect(() => {
+    setShowBackground(inView);
+  }, [inView, setShowBackground]);
+
   return (
     <Section
+      innerRef={ref}
       id="landing"
       className="relative flex min-h-screen cursor-pointer flex-col justify-center space-y-8 pt-32 pb-16 text-gray-600 dark:text-gray-50 lg:space-y-16"
     >
