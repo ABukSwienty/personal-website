@@ -46,7 +46,7 @@ const Nav = ({ children }: NavProps) => {
         damping: 20,
       }}
       className={`fixed left-0 z-50 hidden h-16 w-full flex-row items-center justify-between px-4 text-gray-600 dark:text-gray-100 md:flex md:px-16 ${
-        isReady ? "backdrop-blur-md" : "backdrop-blur-none"
+        isReady ? "backdrop-blur-sm" : "backdrop-blur-none"
       }`}
       onAnimationComplete={() => setIsReady(true)}
     >

@@ -86,7 +86,7 @@ const MobileNav = ({ children }: MobileNavProps) => {
         stiffness: 150,
         damping: 20,
       }}
-      className={`fixed left-0 z-50 flex h-16 w-screen flex-row items-center justify-between px-4 text-gray-600 dark:text-gray-100 md:block md:px-16 ${
+      className={`fixed left-0 z-50 flex h-16 w-screen flex-row items-center justify-between px-4 text-gray-600 dark:text-gray-100 md:hidden md:px-16 ${
         isReady ? "backdrop-blur-md" : "backdrop-blur-none"
       }`}
       onAnimationComplete={() => setIsReady(true)}
