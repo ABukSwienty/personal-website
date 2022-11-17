@@ -3,6 +3,8 @@ import React, { useCallback, useContext } from "react";
 import useNavTo from "../../hooks/use-nav-to";
 import { GlobalContext } from "../../providers/global";
 import DarkModeToggle from "../atoms/dark-mode-toggle";
+import GitHubIcon from "../atoms/github";
+import LinkedInIcon from "../atoms/linked-in";
 import LoadingScreen from "../atoms/loading-screen";
 import NavHider from "../atoms/nav-hider";
 import ContactModal from "../molecules/contact-modal";
@@ -130,6 +132,16 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
           </Nav.Item>
           <Nav.Item>
             <DarkModeToggle />
+          </Nav.Item>
+          <Nav.Item>
+            <a href="https://github.com/ABukSwienty">
+              <GitHubIcon className="h-6 w-6" />
+            </a>
+          </Nav.Item>
+          <Nav.Item>
+            <a href="https://www.linkedin.com/in/alexander-buk-swienty/">
+              <LinkedInIcon className="h-6 w-6" />
+            </a>
           </Nav.Item>
         </Nav>
       </header>

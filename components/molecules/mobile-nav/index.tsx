@@ -9,6 +9,8 @@ import Portal from "../../../HOC/portal";
 import useNavTo from "../../../hooks/use-nav-to";
 import { GlobalContext } from "../../../providers/global";
 import DarkModeToggle from "../../atoms/dark-mode-toggle";
+import GitHubIcon from "../../atoms/github";
+import LinkedInIcon from "../../atoms/linked-in";
 import MobileNavItem from "./item";
 
 export interface MobileNavProps {
@@ -95,7 +97,13 @@ const MobileNav = ({ children }: MobileNavProps) => {
       >
         alexander buk-swienty
       </p>
-      <ul className="flex w-fit flex-row items-center">
+      <ul className="flex w-fit flex-row items-center space-x-4">
+        <a href="https://github.com/ABukSwienty">
+          <GitHubIcon className="h-6 w-6" />
+        </a>
+        <a href="https://www.linkedin.com/in/alexander-buk-swienty/">
+          <LinkedInIcon className="h-6 w-6" />
+        </a>
         <DarkModeToggle />
         <motion.button
           aria-label="Toggle navigation"
@@ -105,7 +113,7 @@ const MobileNav = ({ children }: MobileNavProps) => {
           whileTap={{
             scale: 0.9,
           }}
-          className="z-[9998] ml-4"
+          className="z-[9998]"
         >
           {!show && <Bars3Icon className="h-6 w-6" />}
           {show && <XMarkIcon className="h-6 w-6" />}
