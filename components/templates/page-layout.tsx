@@ -74,8 +74,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
       show: true,
     });
 
-  const handleNoResume = useCallback(() => {
-    toast.error("Resume not available yet!");
+  const handleMobileResume = useCallback(() => {
     mobileNavStore.set({
       show: false,
     });
@@ -92,10 +91,16 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
       <header className="px-4 md:px-16">
         <MobileNav>
           <MobileNav.Item
-            onClick={handleNoResume}
+            onClick={handleMobileResume}
             className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-stone-300"
           >
-            resumé
+            <a
+              href="/alexander_buk_swienty.resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              resumé
+            </a>
           </MobileNav.Item>
           <MobileNav.Item
             onClick={handleMobileNavWork}
@@ -118,11 +123,14 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
           </MobileNav.Item>
         </MobileNav>
         <Nav>
-          <Nav.Item
-            onClick={handleNoResume}
-            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black"
-          >
-            resumé
+          <Nav.Item className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black">
+            <a
+              href="/alexander_buk_swienty.resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              resumé
+            </a>
           </Nav.Item>
           <Nav.Item
             onClick={handleNavWork}
