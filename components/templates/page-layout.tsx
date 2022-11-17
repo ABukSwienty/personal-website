@@ -1,67 +1,149 @@
-import React, { useContext } from "react";
-import { Toaster } from "react-hot-toast";
+import { ArrowUpRightIcon, MoonIcon } from "@heroicons/react/24/solid";
+import React, { useCallback, useContext } from "react";
+import useNavTo from "../../hooks/use-nav-to";
 import { GlobalContext } from "../../providers/global";
-import Background from "../molecules/background";
-import Nav from "../organisms/nav";
+import DarkModeToggle from "../atoms/dark-mode-toggle";
+import LoadingScreen from "../atoms/loading-screen";
+import NavHider from "../atoms/nav-hider";
+import ContactModal from "../molecules/contact-modal";
+import MobileNav from "../molecules/mobile-nav";
+import Nav from "../molecules/nav";
 
 const PageLayout = ({ children }: { children: React.ReactNode }) => {
-  const { navigateToTop, isDarkMode, toggleDarkMode } =
-    useContext(GlobalContext);
+  const {
+    workRef,
+    skillsRef,
+    aboutRef,
+    navHideStore,
+    modalStore,
+    mobileNavStore,
+  } = useContext(GlobalContext);
 
-  const handleAlertAllSquares = () => {
-    document.dispatchEvent(new CustomEvent("ALL_THE_SQUARES"));
-  };
+  const workNav = useNavTo(workRef);
+  const skillsNav = useNavTo(skillsRef);
+  const aboutNav = useNavTo(aboutRef);
+
+  const handleNavWork = useCallback(() => {
+    navHideStore.set({
+      show: true,
+      callback: workNav,
+    });
+  }, [navHideStore, workNav]);
+
+  const handleNavSkills = useCallback(() => {
+    navHideStore.set({
+      show: true,
+      callback: skillsNav,
+    });
+  }, [navHideStore, skillsNav]);
+
+  const handleNavAbout = useCallback(() => {
+    navHideStore.set({
+      show: true,
+      callback: aboutNav,
+    });
+  }, [navHideStore, aboutNav]);
+
+  const handleMobileNavWork = useCallback(() => {
+    workNav();
+    mobileNavStore.set({
+      show: false,
+    });
+  }, [mobileNavStore, workNav]);
+
+  const handleMobileNavSkills = useCallback(() => {
+    skillsNav();
+    mobileNavStore.set({
+      show: false,
+    });
+  }, [mobileNavStore, skillsNav]);
+
+  const handleMobileNavAbout = useCallback(() => {
+    aboutNav();
+    mobileNavStore.set({
+      show: false,
+    });
+  }, [mobileNavStore, aboutNav]);
+
+  const handleShowModal = () =>
+    modalStore.set({
+      show: true,
+    });
 
   return (
-    <div className="flex min-h-screen w-screen flex-col bg-indigo-50 dark:bg-indigo-800">
-      <Nav>
-        <Nav.Button
-          aria-label="Navigate to top"
-          onClick={navigateToTop}
-          icon="home"
-          tooltip="Back to top"
-        />
-        <div className="flex w-full flex-row items-center justify-end gap-4">
-          <Nav.Link
-            icon="github"
-            href="https://github.com/ABukSwienty"
-            tooltip="Github"
-          />
-          <Nav.Link
-            icon="linkedIn"
-            href="https://www.linkedin.com/in/alexander-buk-swienty-70b4611ba/"
-            tooltip="LinkedIn"
-          />
-          <Nav.Button
-            aria-label="Github account"
-            icon="download"
-            tooltip="Download resume"
-            onClick={() =>
-              window.open(
-                "http://alexanderbukswienty.com/alexander-buk-swienty-cv.pdf",
-                "_blank"
-              )
-            }
-          />
-          <Nav.Button
-            aria-label="Toggle all the squares"
-            onClick={handleAlertAllSquares}
-            tooltip="Show me all the squares!"
+    <>
+      <NavHider />
+      <LoadingScreen />
+      <ContactModal />
+      <header className="px-4 md:px-16">
+        <MobileNav>
+          <MobileNav.Item className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-stone-300">
+            resumé
+          </MobileNav.Item>
+          <MobileNav.Item
+            onClick={handleMobileNavWork}
+            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-stone-300"
           >
-            <div className="m-1 h-4 w-4 rounded-sm bg-indigo-200 transition-colors duration-300 ease-in-out group-hover:bg-indigo-600 "></div>
-          </Nav.Button>
-          <Nav.Button
-            aria-label="Toggle dark mode"
-            onClick={toggleDarkMode}
-            icon={isDarkMode ? "lightMode" : "darkMode"}
-            tooltip={isDarkMode ? "Light mode" : "Dark mode"}
-          />
-        </div>
-      </Nav>
-      <div className="flex w-full grow flex-col">{children}</div>
-      <Toaster />
-      <Background wrapperId="landing" />
-    </div>
+            work
+          </MobileNav.Item>
+          <MobileNav.Item
+            onClick={handleMobileNavSkills}
+            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-stone-300"
+          >
+            skills & clients
+          </MobileNav.Item>
+
+          <MobileNav.Item
+            onClick={handleMobileNavAbout}
+            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-stone-300"
+          >
+            about
+          </MobileNav.Item>
+        </MobileNav>
+        <Nav>
+          <Nav.Item className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black">
+            resumé
+          </Nav.Item>
+          <Nav.Item
+            onClick={handleNavWork}
+            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black"
+          >
+            work
+          </Nav.Item>
+          <Nav.Item
+            onClick={handleNavSkills}
+            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black"
+          >
+            skills & clients
+          </Nav.Item>
+
+          <Nav.Item
+            onClick={handleNavAbout}
+            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black"
+          >
+            about
+          </Nav.Item>
+          <Nav.Item className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black">
+            <button onClick={handleShowModal} className="ml-auto w-fit">
+              contact
+            </button>
+          </Nav.Item>
+          <Nav.Item>
+            <DarkModeToggle />
+          </Nav.Item>
+        </Nav>
+      </header>
+      <main className="flex h-fit min-h-fit w-screen flex-col overflow-x-hidden bg-stone-200 px-4 transition-colors duration-1000 ease-in-out dark:bg-gray-800 dark:text-gray-900 md:px-16">
+        {children}
+      </main>
+      <footer className="flex h-64 items-center px-16 dark:bg-gray-800">
+        <aside>
+          <p className="font-garamond text-sm font-medium text-black dark:text-white">
+            portfolio © 2022 Alexander Buk-Swienty
+          </p>
+        </aside>
+      </footer>
+    </>
   );
 };
 

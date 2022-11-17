@@ -1,10 +1,11 @@
 import type { NextPage } from "next";
 import PageLayout from "../components/templates/page-layout";
-import Head from "next/head";
-import IntroSection from "../components/organisms/sections/intro";
-import WorkSection from "../components/organisms/sections/work";
-import DetailSection from "../components/organisms/sections/detail";
-import AboutSection from "../components/organisms/sections/about";
+
+import IntroSection from "../components/organisms/sections/intro-section";
+import WorkSection from "../components/organisms/sections/work-section";
+import { motion } from "framer-motion";
+import SkillsAndClientsSection from "../components/organisms/sections/skills-clients-section";
+import AboutSection from "../components/organisms/sections/about-section";
 
 export interface EnvProps {
   env: {
@@ -19,16 +20,9 @@ export interface EnvProps {
 const Home: NextPage<EnvProps> = (props) => {
   return (
     <PageLayout>
-      <Head>
-        <title>Alexander Buk-Swienty</title>
-      </Head>
-
-      <IntroSection props={props} />
-
+      <IntroSection />
       <WorkSection />
-
-      <DetailSection />
-
+      <SkillsAndClientsSection />
       <AboutSection />
     </PageLayout>
   );
