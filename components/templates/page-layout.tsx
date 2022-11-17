@@ -184,7 +184,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex h-fit min-h-fit w-screen flex-col overflow-x-hidden bg-stone-200 px-4 transition-colors duration-1000 ease-in-out dark:bg-gray-800 dark:text-gray-900 md:px-16">
         {children}
       </main>
-      <footer className="flex h-16 items-center px-16 dark:bg-gray-800 md:h-64">
+      <footer className="flex h-16 items-center px-16 transition-colors duration-1000 ease-in-out dark:bg-gray-800 md:h-64">
         <aside>
           <p className="font-garamond text-sm font-medium text-black dark:text-white">
             portfolio © 2022 Alexander Buk-Swienty
