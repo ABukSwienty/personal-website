@@ -98,10 +98,20 @@ const MobileNav = ({ children }: MobileNavProps) => {
         alexander buk-swienty
       </p>
       <ul className="flex w-fit flex-row items-center space-x-4">
-        <a href="https://github.com/ABukSwienty">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://github.com/ABukSwienty"
+          aria-label="GitHub link"
+        >
           <GitHubIcon className="h-6 w-6" />
         </a>
-        <a href="https://www.linkedin.com/in/alexander-buk-swienty/">
+        <a
+          target="_blank"
+          aria-label="LinkedIn link"
+          rel="noreferrer"
+          href="https://www.linkedin.com/in/alexander-buk-swienty/"
+        >
           <LinkedInIcon className="h-6 w-6" />
         </a>
         <DarkModeToggle />

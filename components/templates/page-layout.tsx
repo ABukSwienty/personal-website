@@ -1,4 +1,5 @@
 import { ArrowUpRightIcon, MoonIcon } from "@heroicons/react/24/solid";
+import Head from "next/head";
 import React, { useCallback, useContext } from "react";
 import useNavTo from "../../hooks/use-nav-to";
 import { GlobalContext } from "../../providers/global";
@@ -74,6 +75,9 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
+      <Head>
+        <title>Alexander Buk-Swienty - Developer, editor, reader.</title>
+      </Head>
       <NavHider />
       <LoadingScreen />
       <ContactModal />
@@ -134,12 +138,22 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
             <DarkModeToggle />
           </Nav.Item>
           <Nav.Item>
-            <a href="https://github.com/ABukSwienty">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/ABukSwienty"
+              aria-label="GitHub link"
+            >
               <GitHubIcon className="h-6 w-6" />
             </a>
           </Nav.Item>
           <Nav.Item>
-            <a href="https://www.linkedin.com/in/alexander-buk-swienty/">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.linkedin.com/in/alexander-buk-swienty/"
+              aria-label="LinkedIn link"
+            >
               <LinkedInIcon className="h-6 w-6" />
             </a>
           </Nav.Item>
