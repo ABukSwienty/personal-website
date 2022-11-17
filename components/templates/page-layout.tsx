@@ -1,6 +1,7 @@
 import { ArrowUpRightIcon, MoonIcon } from "@heroicons/react/24/solid";
 import Head from "next/head";
 import React, { useCallback, useContext } from "react";
+import toast from "react-hot-toast";
 import useNavTo from "../../hooks/use-nav-to";
 import { GlobalContext } from "../../providers/global";
 import DarkModeToggle from "../atoms/dark-mode-toggle";
@@ -73,6 +74,13 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
       show: true,
     });
 
+  const handleNoResume = useCallback(() => {
+    toast.error("Resume not available yet!");
+    mobileNavStore.set({
+      show: false,
+    });
+  }, [mobileNavStore]);
+
   return (
     <>
       <Head>
@@ -83,7 +91,10 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
       <ContactModal />
       <header className="px-4 md:px-16">
         <MobileNav>
-          <MobileNav.Item className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-stone-300">
+          <MobileNav.Item
+            onClick={handleNoResume}
+            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-stone-300"
+          >
             resumé
           </MobileNav.Item>
           <MobileNav.Item
@@ -107,7 +118,10 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
           </MobileNav.Item>
         </MobileNav>
         <Nav>
-          <Nav.Item className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black">
+          <Nav.Item
+            onClick={handleNoResume}
+            className="cursor-pointer transition-colors duration-300 ease-in-out hover:text-black"
+          >
             resumé
           </Nav.Item>
           <Nav.Item
@@ -162,7 +176,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex h-fit min-h-fit w-screen flex-col overflow-x-hidden bg-stone-200 px-4 transition-colors duration-1000 ease-in-out dark:bg-gray-800 dark:text-gray-900 md:px-16">
         {children}
       </main>
-      <footer className="flex h-64 items-center px-16 dark:bg-gray-800">
+      <footer className="flex h-16 items-center px-16 dark:bg-gray-800 md:h-64">
         <aside>
           <p className="font-garamond text-sm font-medium text-black dark:text-white">
             portfolio © 2022 Alexander Buk-Swienty

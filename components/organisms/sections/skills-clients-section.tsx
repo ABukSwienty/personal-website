@@ -116,13 +116,11 @@ const SkillsAndClientsSection = () => {
   return (
     <section
       ref={skillsRef}
-      className="flex h-fit min-h-screen -scroll-m-20 flex-col justify-start pt-8 md:pt-40 lg:justify-between"
+      className="flex h-fit min-h-screen -scroll-m-20 flex-col justify-start pt-8  md:pt-40 lg:justify-between"
     >
-      <Title
-        size="9xl"
-        tag="h2"
+      <h2
         aria-label="Skills and clients"
-        className="perspective-xl mx-auto mb-8 h-fit w-fit overflow-hidden py-2"
+        className="perspective-xl mx-auto mb-8 h-fit w-fit overflow-hidden py-2 text-[2rem] text-black dark:text-white sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl"
       >
         <AnimatedText
           animations={headingVariants}
@@ -130,7 +128,7 @@ const SkillsAndClientsSection = () => {
           mode="char"
           text="skills and clients."
         />
-      </Title>
+      </h2>
 
       <article>
         <IconList text="technologies I know and use everyday.">

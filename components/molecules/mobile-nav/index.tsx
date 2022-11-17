@@ -93,7 +93,7 @@ const MobileNav = ({ children }: MobileNavProps) => {
     >
       <p
         onClick={handleNavIntro}
-        className="cursor-pointer text-lg transition-colors duration-300 ease-in-out hover:text-black"
+        className="cursor-pointer text-xs transition-colors duration-300 ease-in-out hover:text-black sm:text-lg"
       >
         alexander buk-swienty
       </p>
