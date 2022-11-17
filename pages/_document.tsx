@@ -18,7 +18,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <meta
             name="description"
@@ -29,25 +29,37 @@ class MyDocument extends Document {
             content="freelancer, web-development, resume, personal, buk-swienty"
           />
           <meta name="author" content="Alexander Buk-Swienty" />
-          <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="true"
+            href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+            rel="stylesheet"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-            rel="stylesheet"
-          ></link>
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
           <link
             rel="icon"
-            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
           />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+
           <script async src="https://cdn.splitbee.io/sb.js"></script>
         </Head>
-        <body className="overflow-x-hidden bg-indigo-50 font-sans transition-colors duration-300 ease-in-out">
-          <div id="overlay" className="relative z-50"></div>
+        <body
+          className="overflow-x-hidden bg-stone-200 font-vietnam antialiased transition-colors duration-300 ease-in-out"
+          style={{
+            overscrollBehavior: "none",
+          }}
+        >
+          <div id="overlay" className="relative"></div>
           <Main />
           <NextScript />
         </body>

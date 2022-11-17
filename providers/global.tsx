@@ -3,51 +3,73 @@ import {
   Dispatch,
   SetStateAction,
   useCallback,
+  useRef,
   useState,
 } from "react";
+import useSubscribableStore from "../hooks/use-subscribable-store";
 
 export interface GlobalContextInterface {
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
-  navigateToTop: () => void;
+  loadingScreenStore: ReturnType<
+    typeof useSubscribableStore<{ animationComplete: boolean }>
+  >;
+  modalStore: ReturnType<typeof useSubscribableStore<{ show: boolean }>>;
+  bgStore: ReturnType<typeof useSubscribableStore<{ color: string }>>;
+  mobileNavStore: ReturnType<typeof useSubscribableStore<{ show: boolean }>>;
+
+  navHideStore: ReturnType<
+    typeof useSubscribableStore<{
+      show: boolean;
+      callback: () => void | undefined;
+    }>
+  >;
+  introRef: React.RefObject<HTMLElement>;
+  workRef: React.RefObject<HTMLElement>;
+  skillsRef: React.RefObject<HTMLElement>;
+  aboutRef: React.RefObject<HTMLElement>;
 }
 
-export const GlobalContext = createContext<GlobalContextInterface>({
-  isDarkMode: false,
-  toggleDarkMode: () => {},
-  navigateToTop: () => {},
-});
+export const GlobalContext = createContext<GlobalContextInterface>(undefined!);
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const introRef = useRef<HTMLElement>(null);
+  const workRef = useRef<HTMLElement>(null);
+  const skillsRef = useRef<HTMLElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
 
-  const navigateToTop = useCallback(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
+  const loadingScreenStore = useSubscribableStore({
+    animationComplete: false,
+  });
 
-  const toggleDarkMode = useCallback(() => {
-    const body = document.querySelector("body");
-    if (!body) return;
+  const navHideStore = useSubscribableStore({
+    show: false,
+    callback: () => {},
+  });
 
-    setIsDarkMode((prev) => {
-      const mode = !prev;
+  const bgStore = useSubscribableStore({
+    color: "bg-stone-200",
+  });
 
-      if (mode) {
-        body.classList.add("dark");
-      } else {
-        body.classList.remove("dark");
-      }
+  const modalStore = useSubscribableStore({
+    show: false,
+  });
 
-      return mode;
-    });
-  }, []);
+  const mobileNavStore = useSubscribableStore({
+    show: false,
+  });
 
   return (
     <GlobalContext.Provider
-      value={{ isDarkMode, toggleDarkMode, navigateToTop }}
+      value={{
+        loadingScreenStore,
+        introRef,
+        workRef,
+        skillsRef,
+        aboutRef,
+        navHideStore,
+        bgStore,
+        modalStore,
+        mobileNavStore,
+      }}
     >
       {children}
     </GlobalContext.Provider>
