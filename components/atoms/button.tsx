@@ -42,12 +42,6 @@ export const buttonColors: Pick<Colors, "dark" | "light" | "default"> = {
   dark: "bg-gray-800 text-white hover:bg-gray-700 ring-1 ring-gray-600 focus:ring-2 focus:ring-offset-2",
 };
 
-export const BUTTON_VARIANTS: Partial<FramerVariants> = {
-  tap: {
-    scale: 0.95,
-  },
-};
-
 const Button = ({
   size = "md",
   color = "default",
@@ -57,9 +51,8 @@ const Button = ({
   className,
   ...props
 }: ButtonProps) => {
-  const buttonVariants = setVariants([BUTTON_VARIANTS]);
   const classNames = setClasses([
-    "rounded-full transition-shadow duration-100 ease-out outline-none focus:outline-none relative",
+    "rounded-full transition-[box_shadow_color_background-color_border-color_text-decoration-color_fill_stroke] duration-1000 ease-in-out outline-none focus:outline-none relative",
     (LeadingIcon || TrailingIcon) && "flex items-center justify-center",
     buttonSizes[size],
     buttonColors[color],
@@ -70,24 +63,21 @@ const Button = ({
     TrailingIcon ? "ml-1 md:ml-3" : "mr-1 md:mr-3",
   ]);
   return (
-    <motion.button
-      variants={buttonVariants}
-      {...framerVariantProps}
-      className={classNames}
-      {...props}
-    >
-      {LeadingIcon && (
-        <div className={iconClassNames}>
-          <LeadingIcon />
-        </div>
-      )}
-      {children}
-      {TrailingIcon && (
-        <div className={iconClassNames}>
-          <TrailingIcon />
-        </div>
-      )}
-    </motion.button>
+    <motion.div whileTap={{ scale: 0.95 }}>
+      <button className={classNames} {...props}>
+        {LeadingIcon && (
+          <div className={iconClassNames}>
+            <LeadingIcon />
+          </div>
+        )}
+        {children}
+        {TrailingIcon && (
+          <div className={iconClassNames}>
+            <TrailingIcon />
+          </div>
+        )}
+      </button>
+    </motion.div>
   );
 };
 

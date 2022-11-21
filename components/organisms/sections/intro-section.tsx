@@ -92,7 +92,7 @@ const IntroSection = () => {
         </p>
         <div className="flex flex-row items-center space-x-12 overflow-hidden py-4 md:space-x-24 xl:py-8">
           <MotionElements>
-            <ArrowDownIcon className="h-6 w-6 text-black dark:text-white xs:h-12 xs:w-12" />
+            <ArrowDownIcon className="h-6 w-6 text-black transition-colors duration-1000 ease-in-out dark:text-white xs:h-12 xs:w-12" />
           </MotionElements>
           <MotionElements>
             <Button
