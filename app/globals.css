@@ -1,6 +1,116 @@
+@import "tailwindcss";
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-border: var(--border);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-tertiary: var(--tertiary);
+    --color-tertiary-foreground: var(--tertiary-foreground);
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
+    --color-danger: var(--danger);
+    --color-danger-foreground: var(--danger-foreground);
+}
+
+:root {
+    --background: oklch(100% 0 0);
+    --foreground: oklch(14.5% 0 0);
+
+    --primary: oklch(20.5% 0 0);
+    --primary-foreground: oklch(98.5% 0 0);
+
+    --secondary: oklch(97% 0 0);
+    --secondary-foreground: oklch(20.5% 0 0);
+
+    --muted: oklch(97% 0 0);
+    --muted-foreground: oklch(55.6% 0 0);
+
+    --border: oklch(92.2% 0 0);
+
+    --accent: oklch(55.3% 0.195 38.4);
+    --accent-foreground: oklch(100% 0 0);
+
+    --tertiary: oklch(76.9% 0.188 70.08);
+    --tertiary-foreground: oklch(20.5% 0 0);
+
+    --success: oklch(52.7% 0.154 150.07);
+    --success-foreground: oklch(100% 0 0);
+
+    --danger: oklch(57.7% 0.245 27.33);
+    --danger-foreground: oklch(100% 0 0);
+
+    --grid-color: rgb(38 38 38 / 0.1);
+}
+
+.dark {
+    --background: oklch(20.5% 0 0);
+    --foreground: oklch(97% 0 0);
+
+    --primary: oklch(97% 0 0);
+    --primary-foreground: oklch(20.5% 0 0);
+
+    --secondary: oklch(26.9% 0 0);
+    --secondary-foreground: oklch(97% 0 0);
+
+    --muted: oklch(26.9% 0 0);
+    --muted-foreground: oklch(70.8% 0 0);
+
+    --border: oklch(32% 0 0);
+
+    --accent: oklch(64.6% 0.222 41.12);
+    --accent-foreground: oklch(14.5% 0 0);
+
+    --tertiary: oklch(77% 0.15 70);
+    --tertiary-foreground: oklch(14.5% 0 0);
+
+    --success: oklch(72.3% 0.219 149.58);
+    --success-foreground: oklch(14.5% 0 0);
+
+    --danger: oklch(63.7% 0.237 25.33);
+    --danger-foreground: oklch(14.5% 0 0);
+
+    --grid-color: rgb(38 38 38 / 1);
+}
+
+.root {
+    isolation: isolate;
+}
+
 body {
-  font-family: "Times New Roman", Times, serif;
-  margin: 40px auto;
-  max-width: 800px;
-  padding: 0 20px;
+    position: relative;
+}
+
+@utility bg-grid {
+    --grid-size: 24px;
+    background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    /* Anchored top-right to the viewport so the fixed theme toggle (36px, 24px/48px from
+       the right edge) is centered on a grid intersection at every viewport width. */
+    background-position: right 18px top 0;
+    background-attachment: fixed;
+    /* background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size); */
+}
+
+@layer {
+    html {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer base {
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
 }
