@@ -102,6 +102,22 @@ body {
     background-size: var(--grid-size) var(--grid-size); */
 }
 
+/* Shiki dual-theme tokens (see components/ui/markdown.tsx). Backgrounds come
+   from our own tokens, so only foreground colours and font styles apply. */
+.shiki,
+.shiki span {
+    color: var(--shiki-light);
+    font-style: var(--shiki-light-font-style);
+    font-weight: var(--shiki-light-font-weight);
+}
+
+.dark .shiki,
+.dark .shiki span {
+    color: var(--shiki-dark);
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+}
+
 @layer {
     html {
         @apply bg-background text-foreground;

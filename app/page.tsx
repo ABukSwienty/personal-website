@@ -1,17 +1,26 @@
+import { DEV_LOG_DIR } from "@/app/dev-log/constants";
 import { Page } from "@/components/layouts/page";
 import { ExternalLink } from "@/components/ui/external-link";
-import { H1 } from "@/components/ui/typography/h";
+import { Link } from "@/components/ui/link";
+import { ROUTES } from "@/utils/routes";
+import { H1, H4 } from "@/components/ui/typography/h";
 
 import { Highlight } from "@/components/ui/typography/highlight";
 import { P } from "@/components/ui/typography/p";
-import { Separator } from "@base-ui/react";
+import { getMdFiles } from "@/utils/md";
+
 import {
+  ArrowRightIcon,
   AtIcon,
   GithubLogoIcon,
   LinkedinLogoIcon,
 } from "@phosphor-icons/react/ssr";
+import { Separator } from "@/components/ui/separator";
+import { BlogPreviewCard } from "@/components/ui/blog/blog-preview-card";
 
-export default function Home() {
+export default async function Home() {
+  const [latestPost] = await getMdFiles(DEV_LOG_DIR);
+
   return (
     <Page className="flex flex-1 flex-col gap-8">
       <div className="space-y-4">
@@ -46,8 +55,40 @@ export default function Home() {
         <P className="italic">Berlin, Germany, 2026.</P>
       </div>
 
+      {latestPost && (
+        <>
+          <Separator />
+
+          <section className="flex flex-col gap-4 grow justify-between">
+            <div className="space-y-2">
+              <div>
+                <H4>Dev log</H4>
+                <P className="text-sm text-muted-foreground">
+                  Notes on what I&apos;m building and how I&apos;m solving
+                  problems, and occasionally essays on the intersection of
+                  culture and technology.
+                </P>
+              </div>
+
+              <div className="space-y-2">
+                <P className="text-muted-foreground font-bold">Latest: </P>
+                <BlogPreviewCard {...latestPost} />
+              </div>
+            </div>
+
+            <Link
+              href={ROUTES.devLog.index}
+              variant="buttonLike"
+              className="inline-flex items-center gap-2 w-fit"
+            >
+              All posts <ArrowRightIcon weight="bold" />
+            </Link>
+          </section>
+        </>
+      )}
+
       <footer className="mt-auto flex flex-col gap-8">
-        <Separator className="bg-muted h-px" />
+        <Separator />
         <div className="flex flex-row items-center justify-start gap-8">
           <ExternalLink
             hasIcon={false}
